@@ -62,8 +62,7 @@ bool HDHomerunChannels::GetHDHomeRunChannel(const PVR_CHANNEL& _pvrChannel,
 bool HDHomerunChannels::Load(const std::string& _filename)
 {
   string xmlFile = g_strClientPath;
-	xmlFile += "/pvrhdhomerun_channels.xml";
-	xmlFile = "/home/villyft/test.xml";
+  xmlFile += "/pvrhdhomerun_channels.xml";
 
   TiXmlDocument xmlDoc;
   if (!xmlDoc.LoadFile(xmlFile, TIXML_ENCODING_LEGACY))
@@ -177,7 +176,9 @@ bool HDHomerunChannels::Save(const std::string& _filename)
 		XMLUtils::SetString(channel, "name", it->m_name);
 	}
 
-	doc.SaveFile("/home/villyft/test.xml");
+  string xmlFile = g_strClientPath;
+  xmlFile += "/pvrhdhomerun_channels.xml";
+  doc.SaveFile(xmlFile);
 	
 	return true;
 }

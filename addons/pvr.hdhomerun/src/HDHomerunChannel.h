@@ -25,7 +25,7 @@ public:
 	void FillPVRCHannel();
 
 public:
-	int m_uniqueId;
+	unsigned int m_uniqueId;
 	std::string m_programString;
 	int m_programNum;
 	int m_frequency;

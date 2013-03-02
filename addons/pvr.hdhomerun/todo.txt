@@ -5,14 +5,15 @@
 
 + Need unique id to identify channels.
 
++ Read from xbmc location, get rid af hardcoded paths.
+
 * Channel names are strange, where does that come from?
 
 * SwitchChannel() don't need to open/close, but actually isn't called, why?
 
-* Pick any tuner, don't need to run through them all?
+* Pick any tuner, don't need to run through them all.
 
 * Get rid of static buffer?
 
-* Read from xbmc location
-
 * Channelscan dialog.
+

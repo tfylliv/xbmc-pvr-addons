@@ -99,7 +99,7 @@ bool PVRHDHomeRun::SwitchChannel(const PVR_CHANNEL &channel)
 
 int PVRHDHomeRun::ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSize)
 {
-	//XBMC->Log(LOG_DEBUG, "%s(), wanted buf size: %d\n", __func__, iBufferSize);
+	XBMC->Log(LOG_DEBUG, "%s(), wanted buf size: %d\n", __func__, iBufferSize);
 
 	size_t actualRead = 0;
 	size_t readTotal = m_bufferOffset;
@@ -115,6 +115,10 @@ int PVRHDHomeRun::ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSiz
 		}
 		data = hdhomerun_device_stream_recv(m_device, 20000000/8, &actualRead);
 
+		if((m_bufferOffset + readTotal + actualRead) > sizeof(m_buffer)) {
+			XBMC->Log(LOG_ERROR, "Buffer full, clearing/starting over\n");
+			readTotal = 0;
+		}
 		memcpy(m_buffer + readTotal, data, actualRead);
 		readTotal = readTotal + actualRead;
 		
@@ -122,7 +126,7 @@ int PVRHDHomeRun::ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSiz
 		stop++;
 	}
 
-	//XBMC->Log(LOG_DEBUG, "%s(), readTotal: %d\n", __func__, readTotal);
+	XBMC->Log(LOG_DEBUG, "%s(), readTotal: %d\n", __func__, readTotal);
 
 	// Simple fifo buffer.
 	memcpy(pBuffer, m_buffer, iBufferSize);
