@@ -277,6 +277,7 @@ AC_CONFIG_FILES([Makefile \
                  addons/pvr.argustv/addon/addon.xml
                  addons/pvr.demo/addon/addon.xml
                  addons/pvr.dvbviewer/addon/addon.xml
+                 addons/pvr.hdhomerun/addon/addon.xml
                  addons/pvr.hts/addon/addon.xml
                  addons/pvr.mediaportal.tvserver/addon/addon.xml
                  addons/pvr.mythtv.cmyth/addon/addon.xml
