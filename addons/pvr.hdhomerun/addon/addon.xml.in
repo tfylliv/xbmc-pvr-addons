@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<addon
+  id="pvr.hdhomerun"
+  version="0.0.1"
+  name="PVR HDHomeRun Client"
+  provider-name="None">
+  <requires>
+    <c-pluff version="0.1"/>
+    <import addon="xbmc.pvr" version="1.6.0"/>
+  </requires>
+  <extension
+    point="xbmc.pvrclient"
+    library_linux="XBMC_Hdhomerun.pvr"
+	library_osx="XBMC_Hdhomerun.pvr"
+    library_wingl="XBMC_Hdhomerun_win32.dll"
+    library_windx="XBMC_Hdhomerun_win32.dll"
+    library_android="libXBMC_Hdhomerun.so" />
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">HDHomeRun PVR Client</summary>
+    <description lang="en">HDHomeRun PVR Client</description>
+    <disclaimer lang="en">Just for realtime streaming</disclaimer>
+    <platform>@OS@</platform>
+  </extension>
+</addon>

@@ -1,0 +1,18 @@
++ Add libhdhomerun as a library to git source
+  + build a static library from that
+
++ Add() during channelscan needs impl.
+
++ Need unique id to identify channels.
+
+* Channel names are strange, where does that come from?
+
+* SwitchChannel() don't need to open/close, but actually isn't called, why?
+
+* Pick any tuner, don't need to run through them all?
+
+* Get rid of static buffer?
+
+* Read from xbmc location
+
+* Channelscan dialog.

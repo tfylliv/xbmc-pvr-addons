@@ -266,6 +266,7 @@ AC_CONFIG_FILES([Makefile \
                  addons/pvr.demo/Makefile \
                  addons/pvr.dvbviewer/Makefile \
                  addons/pvr.argustv/Makefile \
+                 addons/pvr.hdhomerun/Makefile \
                  addons/pvr.hts/Makefile \
                  addons/pvr.mediaportal.tvserver/Makefile \
                  addons/pvr.nextpvr/Makefile \
