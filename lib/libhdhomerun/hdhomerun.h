@@ -30,6 +30,8 @@
  * conditions defined in the GNU Lesser General Public License.
  */
 
+#pragma once
+
 #include "hdhomerun_os.h"
 #include "hdhomerun_types.h"
 #include "hdhomerun_pkt.h"
