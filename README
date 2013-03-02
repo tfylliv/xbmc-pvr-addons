@@ -56,3 +56,5 @@ describe how to import the "xbmc-pvr-addons.sln" in "XBMC for Windows.sln"
 XBMC Windows installer with included pvr addons:
 ------------------------------------------------
 Not yet possible. Still a TODO.
+
+test
