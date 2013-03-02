@@ -257,6 +257,7 @@ AC_CONFIG_FILES([Makefile \
                  lib/Makefile \
                  lib/jsoncpp/Makefile \
                  lib/libhts/Makefile \
+                 lib/libhdhomerun/Makefile \
                  lib/tinyxml/Makefile \
                  lib/cmyth/Makefile \
                  lib/cmyth/libcmyth/Makefile \
