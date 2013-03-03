@@ -11,28 +11,28 @@ struct hdhomerun_device_t;
 class PVRHDHomeRun
 {
 public:
-	PVRHDHomeRun();
-	virtual ~PVRHDHomeRun();
+  PVRHDHomeRun();
+  virtual ~PVRHDHomeRun();
 
-	PVR_ERROR GetChannels(ADDON_HANDLE handle, bool bRadio);
-	int GetCurrentChannel();
-	int GetChannelsAmount();
+  PVR_ERROR GetChannels(ADDON_HANDLE handle, bool bRadio);
+  int GetCurrentChannel();
+  int GetChannelsAmount();
 
-	void GetSignalStatus(PVR_SIGNAL_STATUS &signalStatus);
+  void GetSignalStatus(PVR_SIGNAL_STATUS &signalStatus);
 
-	bool OpenLiveStream(const PVR_CHANNEL &channel);
-	int ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSize);
-	bool SwitchChannel(const PVR_CHANNEL &channel);
-	void CloseLiveStream();
+  bool OpenLiveStream(const PVR_CHANNEL &channel);
+  int ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSize);
+  bool SwitchChannel(const PVR_CHANNEL &channel);
+  void CloseLiveStream();
 
 private:
-	int ChannelScan();
-	
+  int ChannelScan();
+  
 private:
-	struct hdhomerun_device_t* m_device;
+  struct hdhomerun_device_t* m_device;
 
-	uint8_t m_buffer[2000000];
-	int m_bufferOffset;
-	
-	HDHomerunChannels m_channels;
+  uint8_t m_buffer[2000000];
+  int m_bufferOffset;
+  
+  HDHomerunChannels m_channels;
 };

@@ -199,12 +199,12 @@ bool OpenLiveStream(const PVR_CHANNEL &channel)
 
 int ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSize)
 {
-	return m_data->ReadLiveStream(pBuffer, iBufferSize);
+  return m_data->ReadLiveStream(pBuffer, iBufferSize);
 }
 
 void CloseLiveStream(void)
 {
-	m_data->CloseLiveStream();
+  m_data->CloseLiveStream();
 }
 
 int GetCurrentClientChannel(void)
@@ -219,7 +219,7 @@ bool SwitchChannel(const PVR_CHANNEL &channel)
 
 PVR_ERROR SignalStatus(PVR_SIGNAL_STATUS &signalStatus)
 {
-	m_data->GetSignalStatus(signalStatus);
+  m_data->GetSignalStatus(signalStatus);
 
   return PVR_ERROR_NO_ERROR;
 }
@@ -267,7 +267,7 @@ PVR_ERROR GetEPGForChannel(ADDON_HANDLE handle, const PVR_CHANNEL &channel, time
 int GetChannelGroupsAmount(void) { return -1;}
 PVR_ERROR GetStreamProperties(PVR_STREAM_PROPERTIES* pProperties) { return PVR_ERROR_NOT_IMPLEMENTED; }
 PVR_ERROR GetChannelGroups(ADDON_HANDLE handle, bool bRadio) { return PVR_ERROR_NOT_IMPLEMENTED; }
-	PVR_ERROR GetChannelGroupMembers(ADDON_HANDLE handle, const PVR_CHANNEL_GROUP &group) { return PVR_ERROR_NOT_IMPLEMENTED; }
+PVR_ERROR GetChannelGroupMembers(ADDON_HANDLE handle, const PVR_CHANNEL_GROUP &group) { return PVR_ERROR_NOT_IMPLEMENTED; }
 int GetRecordingsAmount(void) { return -1; }
 PVR_ERROR GetRecordings(ADDON_HANDLE handle) { return PVR_ERROR_NOT_IMPLEMENTED; }
 }
