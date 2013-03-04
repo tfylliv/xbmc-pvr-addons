@@ -48,10 +48,11 @@ public:
            hdhomerun_channelscan_program_t* _program,
            int uniqueId);
 
-  std::vector<PVR_CHANNEL> GetPVRChannels();
+  std::vector<PVR_CHANNEL> GetPVRChannels() const;
   bool GetHDHomeRunChannel(const PVR_CHANNEL& _pvrChannel,
-                                        HDHomerunChannel& _channel);
-  
+                           HDHomerunChannel& _channel);
+
+  int GetChannelCount() const;
 private:
   std::vector<HDHomerunChannel> m_channels;
 };

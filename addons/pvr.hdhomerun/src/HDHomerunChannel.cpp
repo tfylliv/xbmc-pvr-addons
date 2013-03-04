@@ -32,11 +32,11 @@ void HDHomerunChannels::Add(const hdhomerun_channelscan_result_t& _result,
   m_channels.push_back(channel);
 }
 
-vector<PVR_CHANNEL> HDHomerunChannels::GetPVRChannels()
+vector<PVR_CHANNEL> HDHomerunChannels::GetPVRChannels() const
 {
   vector<PVR_CHANNEL> channels;
 
-  vector<HDHomerunChannel>::iterator it;
+  vector<HDHomerunChannel>::const_iterator it;
   for(it = m_channels.begin(); it != m_channels.end(); ++it)
   {
     channels.push_back(it->m_xbmcChannel);
@@ -58,6 +58,12 @@ bool HDHomerunChannels::GetHDHomeRunChannel(const PVR_CHANNEL& _pvrChannel,
   }
   return false;
 }
+
+int HDHomerunChannels::GetChannelCount() const
+{
+  return m_channels.size();
+}
+
 
 bool HDHomerunChannels::Load(const std::string& _filename)
 {
