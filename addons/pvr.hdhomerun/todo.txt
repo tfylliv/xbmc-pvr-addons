@@ -7,15 +7,17 @@
 
 + Read from xbmc location, get rid af hardcoded paths.
 
-* GetChannelCount
++ GetChannelCount
 
-* Channel names are strange, where does that come from?
+* Channel names are sometimes strange, where does that come from?
 
-* Pick any tuner, don't need to run through them all.
+* Pick any tuner, don't need to run through them all?
 
 * Get rid of static buffer?
 
 * SwitchChannel() don't need to open/close, but actually isn't called, why?
+
+* Add some configuration options?
 
 * Channelscan dialog.
 
