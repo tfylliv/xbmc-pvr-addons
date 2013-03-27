@@ -17,6 +17,7 @@
  */
 
 #include "client.h"
+#include "HDHomeRunChannelScan.h"
 #include "PVRHDHomeRun.h"
 
 #include "platform/util/util.h"
@@ -42,6 +43,7 @@ std::string g_strClientPath           = "";
 
 CHelper_libXBMC_addon *XBMC           = NULL;
 CHelper_libXBMC_pvr   *PVR            = NULL;
+CHelper_libXBMC_gui   *GUI            = NULL;
 
 extern "C" {
 
@@ -64,10 +66,19 @@ ADDON_STATUS ADDON_Create(void* hdl, void* props)
     return ADDON_STATUS_PERMANENT_FAILURE;
   }
 
+  GUI = new CHelper_libXBMC_gui;
+  if (!GUI->RegisterMe(hdl))
+  {
+    SAFE_DELETE(GUI);
+    SAFE_DELETE(XBMC);
+    return ADDON_STATUS_PERMANENT_FAILURE;
+  }
+
   PVR = new CHelper_libXBMC_pvr;
   if (!PVR->RegisterMe(hdl))
   {
     SAFE_DELETE(PVR);
+    SAFE_DELETE(GUI);
     SAFE_DELETE(XBMC);
     return ADDON_STATUS_PERMANENT_FAILURE;
   }
@@ -83,6 +94,15 @@ ADDON_STATUS ADDON_Create(void* hdl, void* props)
   m_data = new PVRHDHomeRun;
   m_CurStatus = ADDON_STATUS_OK;
   m_bCreated = true;
+  
+  PVR_MENUHOOK hook;
+
+  // add menuhook if scanning is supported
+  hook.category = PVR_MENUHOOK_SETTING;
+  hook.iHookId = 10001;
+  hook.iLocalizedStringId = 30008;
+  PVR->AddMenuHook(&hook);
+
   return m_CurStatus;
 }
 
@@ -95,6 +115,16 @@ void ADDON_Destroy()
 {
   delete m_data;
   m_bCreated = false;
+
+  if (PVR)
+    SAFE_DELETE(PVR);
+
+  if (GUI)
+    SAFE_DELETE(GUI);
+
+  if (XBMC)
+    SAFE_DELETE(XBMC);
+
   m_CurStatus = ADDON_STATUS_UNKNOWN;
 }
 
@@ -160,6 +190,7 @@ PVR_ERROR GetAddonCapabilities(PVR_ADDON_CAPABILITIES* pCapabilities)
   pCapabilities->bHandlesInputStream      = true;
   pCapabilities->bSupportsRadio           = false;
   pCapabilities->bSupportsChannelGroups   = false;
+  pCapabilities->bSupportsChannelScan     = true;
 
   return PVR_ERROR_NO_ERROR;
 }
@@ -240,9 +271,34 @@ PVR_ERROR SignalStatus(PVR_SIGNAL_STATUS &signalStatus)
   return PVR_ERROR_NO_ERROR;
 }
 
+PVR_ERROR DialogChannelScan(void)
+{
+  XBMC->Log(LOG_DEBUG, "%s()", __func__);
+
+  HDHomeRunChannelScan scan;
+  scan.Open();
+  
+  return PVR_ERROR_NO_ERROR;
+}
+
+PVR_ERROR CallMenuHook(const PVR_MENUHOOK &menuhook) {
+  XBMC->Log(LOG_DEBUG, "%s()", __func__);
+
+  switch(menuhook.iHookId)
+  {
+  case 10001:
+    DialogChannelScan();
+    return PVR_ERROR_NO_ERROR;
+  default:
+    XBMC->Log(LOG_DEBUG, "MENU HOOK %d()", menuhook.iHookId);
+  }
+
+  return PVR_ERROR_NOT_IMPLEMENTED;
+}
+  
+
 /** UNUSED API FUNCTIONS */
-PVR_ERROR DialogChannelScan(void) { return PVR_ERROR_NOT_IMPLEMENTED; }
-PVR_ERROR CallMenuHook(const PVR_MENUHOOK &menuhook) { return PVR_ERROR_NOT_IMPLEMENTED; }
+//PVR_ERROR CallMenuHook(const PVR_MENUHOOK &menuhook) { return PVR_ERROR_NOT_IMPLEMENTED; }
 PVR_ERROR DeleteChannel(const PVR_CHANNEL &channel) { return PVR_ERROR_NOT_IMPLEMENTED; }
 PVR_ERROR RenameChannel(const PVR_CHANNEL &channel) { return PVR_ERROR_NOT_IMPLEMENTED; }
 PVR_ERROR MoveChannel(const PVR_CHANNEL &channel) { return PVR_ERROR_NOT_IMPLEMENTED; }

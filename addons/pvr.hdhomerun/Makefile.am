@@ -18,6 +18,7 @@ include ../Makefile.include.am
 
 libpvrhdhomerun_addon_la_SOURCES = src/client.cpp \
                               src/PVRHDHomeRun.cpp \
-                              src/HDHomerunChannel.cpp
+                              src/HDHomerunChannel.cpp \
+                              src/HDHomeRunChannelScan.cpp
 libpvrhdhomerun_addon_la_LDFLAGS = @TARGET_LDFLAGS@
 

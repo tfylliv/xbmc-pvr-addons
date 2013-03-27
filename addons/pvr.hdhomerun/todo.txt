@@ -9,6 +9,8 @@
 
 + GetChannelCount
 
+* Signal strength/BNR = 0. Why?
+
 * Channel names are sometimes strange, where does that come from?
 
 * Pick any tuner, don't need to run through them all?
@@ -20,4 +22,9 @@
 * Add some configuration options?
 
 * Channelscan dialog.
+  * Deadlock in Frodo 12.0 (https://github.com/xbmc/xbmc/pull/2188)
 
+* Buffer full => readtotal busted/negative => crash.
+
+* Delete scanner in destructor so we don't crash if existing while in the
+  scanner dialog?
